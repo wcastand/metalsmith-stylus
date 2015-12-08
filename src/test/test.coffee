@@ -2,10 +2,10 @@ path = require 'path'
 resolve = path.resolve
 
 assertDirEqual = require 'assert-dir-equal'
-metalsmith = require 'metalsmith'
 stylus = require '../'
+metalsmith = require 'metalsmith'
 
-describe 'metalsmith-stylus', () ->
+describe 'metalsmith-styl', () ->
   it 'should compile stylus file', (done) ->
     source = resolve './test/fixtures/basic/'
     target = resolve './test/fixtures/basic/build'

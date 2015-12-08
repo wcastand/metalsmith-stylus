@@ -6,12 +6,12 @@ stylus = require 'stylus'
 class Stylus
   contructor: (options) ->
     class Middleware
-      constructor:(options) ->
+      constructor:(opts) ->
         @opts = @extend
           master: null,
           output: 'master.css'
-        , options
-      extends: (object, properties) ->
+        , opts
+      extends: (object, properties) =>
         for key, val of properties
           object[key] = val
         object
@@ -41,7 +41,7 @@ class Stylus
                   files[file].contents = new Buffer(css)
         done()
 
-    styl = new Middleware options
-    return styl.plugin.bind(styl)
+    middleware = new Middleware options
+    return middleware.plugin.bind(middleware)
 
 module.exports = Stylus

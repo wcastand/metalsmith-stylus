@@ -8,11 +8,11 @@
 
   assertDirEqual = require('assert-dir-equal');
 
-  metalsmith = require('metalsmith');
-
   stylus = require('../');
 
-  describe('metalsmith-stylus', function() {
+  metalsmith = require('metalsmith');
+
+  describe('metalsmith-styl', function() {
     return it('should compile stylus file', function(done) {
       var expected, source, target;
       source = resolve('./test/fixtures/basic/');
