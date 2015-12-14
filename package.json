@@ -6,9 +6,8 @@
   "author": "William Castandet <wcastand@gmail.com> (http://wcastand.com)",
   "license": "MIT",
   "scripts": {
-    "test": "./node_modules/.bin/mocha --reporter spec",
-    "build": "coffee -co ./ ./src",
-    "dev": "npm run build && npm run test"
+    "test": "./node_modules/.bin/mocha test",
+    "build": "coffee -co ./lib ./src"
   },
   "dependencies": {
     "stylus": "^0.52.4"
