@@ -1,6 +1,6 @@
 {
   "name": "metalsmith-styl",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "metalsmith stylus plugin",
   "main": "lib/index.js",
   "author": "William Castandet <wcastand@gmail.com> (http://wcastand.com)",
