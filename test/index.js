@@ -29,7 +29,8 @@ describe("Metalsmith-stylus", function () {
       .destination('build')
       .use(stylus({
         master: 'master.styl',
-        output: 'master.css'
+        output: 'master.css',
+        filter: '.styl, .stylus, .test'
       }))
       .build(function (err) {
         if (err) return done(err)
