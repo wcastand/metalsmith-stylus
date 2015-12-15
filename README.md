@@ -28,7 +28,8 @@ var stylus = require('metalsmith-stylus')
 Metalsmith(__dirname)
   .use(stylus({
     master:'master.styl',
-    output: 'app.css'
+    output: 'app.css',
+    filter: '.styl, .stylus, .test'
   }))
   .build()
 ```
@@ -37,6 +38,10 @@ Metalsmith(__dirname)
 
 Use any or all of the following:
 
+#### `filter`
+
+extension who need to be processed (default: .styl, .stylus)
+
 #### `master`
 
 Name of the master file (the one containing the includes)
@@ -44,11 +49,6 @@ Name of the master file (the one containing the includes)
 #### `output`
 
 Name of the file in your build
-
-## Todo
-
-  - Compile master file and files not included in the master file.
-  - add filter (right now works with [metalsmith-branch](https://github.com/ericgj/metalsmith-branch))
 
 ## Tests
 
