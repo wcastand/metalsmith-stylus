@@ -9,7 +9,7 @@ A [Stylus][stylus] plugin for [Metalsmith][metalsmith].
 ## Installation (not available)
 
 ```
-npm install metalsmith-stylus
+npm install metalsmith-styl
 ```
 
 ## Usage
