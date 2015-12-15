@@ -12,30 +12,30 @@ Stylus = (options) ->
     output: 'master.css'
   , options
   return (files, metalsmith, done) ->
-    for file, content of files
-      do (file, content) ->
+    for key, file of files
+      do (key, file) ->
         if opts.master?
-          if basename(file) == opts.master
-            s = stylus files[file].contents.toString()
+          if key == opts.master
+            s = stylus file.contents.toString()
               .set 'filename', opts.output
-              .include process.cwd() + '/src/' + dirname(file)
+              .include process.cwd() + '/' + metalsmith._directory + '/**/*'
             s.render (err, css) ->
               if err? then throw err
-              new_file = file.replace opts.master, opts.output
-              files[new_file] = files[file]
+              new_file = key.replace opts.master, opts.output
+              files[new_file] = file
               files[new_file].contents = new Buffer(css)
-              delete files[file]
-          else if file.indexOf(opts.master) == -1 then delete files[file]
+              delete files[key]
+          else if key.indexOf(opts.master) == -1 then delete files[key]
         else
-          s = stylus files[file].contents.toString()
-            .set 'filename', basename(file)
-            .include process.cwd() + '/src/' + dirname(file)
-            .render (err, css) ->
-              if err then throw err
-              new_file = file.replace '.styl', '.css'
-              files[new_file] = files[file]
-              files[new_file].contents = new Buffer(css)
-              delete files[file]
+          s = stylus file.contents.toString()
+            .set 'filename', key
+            .include process.cwd() + '/' + metalsmith._directory + '/**/*'
+          s.render (err, css) ->
+            if err then throw err
+            new_file = key.replace '.styl', '.css'
+            files[new_file] = files[key]
+            files[new_file].contents = new Buffer(css)
+            delete files[key]
     done()
 
 module.exports = Stylus
