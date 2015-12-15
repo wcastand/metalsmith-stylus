@@ -40,14 +40,14 @@ Use any or all of the following:
 
 #### `filter`
 
-extension who need to be processed
+Extensions that need to be processed
 
 default: .styl, .stylus
 
 #### `master`
 
 Name of the master file.
-file included in this one will not be rendered
+File included in this one will not be rendered.
 
 default: null
 
