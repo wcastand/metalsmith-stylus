@@ -28,7 +28,7 @@ describe("Metalsmith-stylus", function () {
       .source('src')
       .destination('build')
       .use(stylus({
-        master: 'master.styl',
+        master: 'app.styl',
         output: 'master.css',
         filter: '.styl, .stylus, .test'
       }))

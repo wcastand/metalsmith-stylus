@@ -35,7 +35,7 @@ Stylus = (options) ->
       if filter key, opts.filter
         do (key, file) ->
           if opts.master?
-            if key == opts.master
+            if key.indexOf(opts.master) isnt -1
               s = stylus file.contents.toString()
                 .set 'filename', opts.output
                 .include metalsmith._directory + '/**/*'
@@ -46,7 +46,7 @@ Stylus = (options) ->
                 files[new_file] = file
                 files[new_file].contents = new Buffer(css)
                 delete files[key]
-            else if key.indexOf(opts.master) == -1 and includes.find( (v) -> v.includes(key))?
+            else if key.indexOf(opts.master) is -1 and includes.find( (v) -> v.indexOf(key))?
               delete files[key]
             else
               s = stylus file.contents.toString()
