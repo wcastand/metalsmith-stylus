@@ -58,6 +58,10 @@ Use only if master is specified.
 
 default: master.css
 
+## Todo
+
+  - Create npm package
+
 ## Tests
 
 ```
