@@ -40,15 +40,23 @@ Use any or all of the following:
 
 #### `filter`
 
-extension who need to be processed (default: .styl, .stylus)
+extension who need to be processed
+
+default: .styl, .stylus
 
 #### `master`
 
-Name of the master file (the one containing the includes)
+Name of the master file.
+file included in this one will not be rendered
+
+default: null
 
 #### `output`
 
-Name of the file in your build
+Name of the file in your build.
+Use only if master is specified.
+
+default: master.css
 
 ## Tests
 
