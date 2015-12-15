@@ -38,7 +38,7 @@ Stylus = (options) ->
             if key == opts.master
               s = stylus file.contents.toString()
                 .set 'filename', opts.output
-                .include process.cwd() + '/' + metalsmith._directory + '/**/*'
+                .include metalsmith._directory + '/**/*'
               includes.push s.deps()...
               s.render (err, css) ->
                 if err? then throw err
@@ -51,7 +51,7 @@ Stylus = (options) ->
             else
               s = stylus file.contents.toString()
                 .set 'filename', key
-                .include process.cwd() + '/' + metalsmith._directory + '/**/*'
+                .include metalsmith._directory + '/**/*'
               s.render (err, css) ->
                 if err then throw err
                 new_file = replaceExt key, opts.filter
@@ -61,7 +61,7 @@ Stylus = (options) ->
           else
             s = stylus file.contents.toString()
               .set 'filename', key
-              .include process.cwd() + '/' + metalsmith._directory + '/**/*'
+              .include metalsmith._directory + '/**/*'
             s.render (err, css) ->
               if err then throw err
               new_file = replaceExt key, opts.filter
