@@ -45,6 +45,11 @@ Name of the master file (the one containing the includes)
 
 Name of the file in your build
 
+## Todo
+
+  - Compile master file and files not included in the master file.
+  - add filter (right now works with [metalsmith-branch](https://github.com/ericgj/metalsmith-branch))
+
 ## Tests
 
 ```
