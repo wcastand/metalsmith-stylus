@@ -22,7 +22,7 @@ Stylus = (options) ->
   opts = extend
     master: null,
     outputDir: null,
-    output: 'master.css',
+    output: null,
     filter: '.styl, .stylus'
   , options
   f = opts.filter.split ','
@@ -37,35 +37,40 @@ Stylus = (options) ->
         do (key, file) ->
           if opts.master?
             if key.indexOf(opts.master) isnt -1
+              if opts.output? and opts.outputDir?
+                new_file = opts.outputDir + '/' + output
+              else if opts.output? and not opts.outputDir?
+                new_file = replaceExt(key, opts.filter)
+              else if opts.outputDir? and not opts.output?
+                new_file = opts.outputDir + '/' + replaceExt(basename(key), opts.filter)
               s = stylus file.contents.toString()
-                .set 'filename', opts.output
+                .set 'filename', new_file
                 .include metalsmith._directory + '/**/*'
-              includes.push s.deps()...
               s.render (err, css) ->
                 if err? then throw err
-                new_file = if opts.outputDir? then opts.outputDir + '/' + opts.output else key.replace opts.master, opts.output
                 files[new_file] = file
                 files[new_file].contents = new Buffer(css)
                 delete files[key]
-            else if key.indexOf(opts.master) is -1 and includes.find( (v) -> v.indexOf(key))?
+              includes.push s.deps()...
+            else if key.indexOf(opts.master) is -1 and includes.find( (v) -> v.indexOf(basename(key)))?
               delete files[key]
             else
+              new_file = if opts.outputDir? then opts.outputDir + '/' + replaceExt(key, opts.filter) else replaceExt(key, opts.filter)
               s = stylus file.contents.toString()
                 .set 'filename', key
                 .include metalsmith._directory + '/**/*'
               s.render (err, css) ->
                 if err then throw err
-                new_file = if opts.outputDir? then opts.outputDir + '/' + replaceExt(key, opts.filter) else replaceExt(key, opts.filter)
                 files[new_file] = files[key]
                 files[new_file].contents = new Buffer(css)
                 delete files[key]
           else
+            new_file = if opts.outputDir? then opts.outputDir + '/' + replaceExt(key, opts.filter) else replaceExt(key, opts.filter)
             s = stylus file.contents.toString()
               .set 'filename', key
               .include metalsmith._directory + '/**/*'
             s.render (err, css) ->
               if err then throw err
-              new_file = if opts.outputDir? then opts.outputDir + '/' + replaceExt(key, opts.filter) else replaceExt(key, opts.filter)
               files[new_file] = files[key]
               files[new_file].contents = new Buffer(css)
               delete files[key]

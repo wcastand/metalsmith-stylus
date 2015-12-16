@@ -27,9 +27,19 @@ var stylus = require('metalsmith-stylus')
 
 Metalsmith(__dirname)
   .use(stylus({
-    master:'master.styl',
+    master: 'master.styl',
     output: 'app.css',
     filter: '.styl, .stylus, .test'
+  }))
+  .build()
+
+//With outputDir
+var stylus = require('metalsmith-stylus')
+
+Metalsmith(__dirname)
+  .use(stylus({
+    master: 'master.styl',
+    outputDir: '.'
   }))
   .build()
 ```
@@ -51,16 +61,20 @@ File included in this one will not be rendered.
 
 default: null
 
+#### `outputDir`
+
+Name of the folder in your build.
+
+default: null (keep the same architecture)
+
 #### `output`
 
 Name of the file in your build.
 Use only if master is specified.
 
-default: master.css
+default: null
 
 ## Todo
-
-  - Create npm package
 
 ## Tests
 

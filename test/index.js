@@ -38,4 +38,22 @@ describe("Metalsmith-stylus", function () {
         return done(null)
       });
   });
+  it("should compile stylus files with outputDir", function (done) {
+    var source = 'test/fixtures/customDir'
+    var target = 'test/fixtures/customDir/build'
+    var expected = 'test/fixtures/customDir/expected'
+    metalsmith(source)
+      .source('src')
+      .destination('build')
+      .use(stylus({
+        master: 'app.styl',
+        outputDir: '.',
+        filter: '.styl, .stylus'
+      }))
+      .build(function (err) {
+        if (err) return done(err)
+        assertDir(expected, target)
+        return done(null)
+      });
+  });
 });
