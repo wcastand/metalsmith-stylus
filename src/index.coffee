@@ -21,6 +21,7 @@ replaceExt = (file, filters) =>
 Stylus = (options) ->
   opts = extend
     master: null,
+    outputDir: null,
     output: 'master.css',
     filter: '.styl, .stylus'
   , options
@@ -42,7 +43,7 @@ Stylus = (options) ->
               includes.push s.deps()...
               s.render (err, css) ->
                 if err? then throw err
-                new_file = key.replace opts.master, opts.output
+                new_file = if opts.outputDir? then opts.outputDir + '/' + opts.output else key.replace opts.master, opts.output
                 files[new_file] = file
                 files[new_file].contents = new Buffer(css)
                 delete files[key]
@@ -54,7 +55,7 @@ Stylus = (options) ->
                 .include metalsmith._directory + '/**/*'
               s.render (err, css) ->
                 if err then throw err
-                new_file = replaceExt key, opts.filter
+                new_file = if opts.outputDir? then opts.outputDir + '/' + replaceExt(key, opts.filter) else replaceExt(key, opts.filter)
                 files[new_file] = files[key]
                 files[new_file].contents = new Buffer(css)
                 delete files[key]
@@ -64,7 +65,7 @@ Stylus = (options) ->
               .include metalsmith._directory + '/**/*'
             s.render (err, css) ->
               if err then throw err
-              new_file = replaceExt key, opts.filter
+              new_file = if opts.outputDir? then opts.outputDir + '/' + replaceExt(key, opts.filter) else replaceExt(key, opts.filter)
               files[new_file] = files[key]
               files[new_file].contents = new Buffer(css)
               delete files[key]
