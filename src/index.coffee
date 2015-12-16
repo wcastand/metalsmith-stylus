@@ -38,7 +38,7 @@ Stylus = (options) ->
           if opts.master?
             if key.indexOf(opts.master) isnt -1
               if opts.output? and opts.outputDir?
-                new_file = opts.outputDir + '/' + output
+                new_file = opts.outputDir + '/' + opts.output
               else if opts.output? and not opts.outputDir?
                 new_file = replaceExt(key, opts.filter)
               else if opts.outputDir? and not opts.output?
