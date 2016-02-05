@@ -4,8 +4,6 @@
 
 A [Stylus][stylus] plugin for [Metalsmith][metalsmith].
 
-#WORK IN PROGRESS
-
 ## Installation
 
 ```
